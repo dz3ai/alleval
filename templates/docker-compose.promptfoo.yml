@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  promptfoo:
+    build:
+      context: ../promptfoo
+      dockerfile: Dockerfile
+    container_name: alleval-promptfoo
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      API_PORT: "3000"
+      HOST: "0.0.0.0"
+      PROMPTFOO_SELF_HOSTED: "1"
+      PROMPTFOO_RUNNING_IN_DOCKER: "1"
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      GOOGLE_API_KEY: ${GOOGLE_API_KEY:-}
+      AZURE_OPENAI_API_KEY: ${AZURE_OPENAI_API_KEY:-}
+      AZURE_OPENAI_ENDPOINT: ${AZURE_OPENAI_ENDPOINT:-}
+    volumes:
+      - ./data/promptfoo:/home/promptfoo/.promptfoo
+    working_dir: /app
+    command: ["node", "dist/src/server/index.js"]

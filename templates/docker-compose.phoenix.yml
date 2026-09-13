@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  phoenix:
+    build:
+      context: ../phoenix
+      dockerfile: Dockerfile
+    container_name: alleval-phoenix
+    restart: unless-stopped
+    ports:
+      - "6006:6006"
+      - "4317:4317"
+    environment:
+      PHOENIX_ENABLE_AUTH: "false"
+      PHOENIX_WORKING_DIR: "/tmp/phoenix"
+      PHOENIX_COLLECTOR_ENDPOINT: "http://localhost:6006"
+    volumes:
+      - ./data/phoenix:/tmp/phoenix
+    command: ["python", "-m", "phoenix.server.main"]
