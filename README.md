@@ -29,7 +29,7 @@ This workspace is intended to help evaluate which open-source suite best fits en
 Initialize and update submodules:
 
 ```bash
-cd /home/dannyz/src/llmbenchmark/alleval
+cd path/to/alleval   # repo root
 git submodule update --init --recursive
 ```
 
@@ -74,19 +74,19 @@ Sample local templates are stored in the [templates](./templates) directory.
 A convenience startup script is provided at [scripts/start-all.sh](./scripts/start-all.sh):
 
 ```bash
-cd /home/dannyz/src/llmbenchmark/alleval
+cd path/to/alleval   # repo root
 ./scripts/start-all.sh
 ```
 
 Copy a template file to a working location and adjust environment variables and mounts for your environment.
 
 ```bash
-cd /home/dannyz/src/llmbenchmark/alleval
+cd path/to/alleval   # repo root
 docker compose -f templates/docker-compose.promptfoo.yml up --build
 ```
 
 ```bash
-cd /home/dannyz/src/llmbenchmark/alleval
+cd path/to/alleval   # repo root
 docker compose -f templates/docker-compose.phoenix.yml up --build
 ```
 
@@ -119,3 +119,5 @@ For a private enterprise deployment, the most practical starting stack is:
 ## Repository status
 
 This is a comparison workspace for selecting an open-source evaluation pipeline suite for on-prem enterprise LLM deployments.
+
+> **Live assessment (2026-11-02):** [`docs/ENTERPRISE-READINESS-2026-11.md`](docs/ENTERPRISE-READINESS-2026-11.md) — current license, maintenance, and air-gap findings verified against GitHub. Note it supersedes parts of the matrix below: **Phoenix is Elastic License 2.0 (not OSI open source)**, **ragas has moved to vibrantlabsai and is dormant since Feb 2026**, and **helm last released Apr 2026**. The actively-maintained, permissively-licensed core is **promptfoo (MIT)** + **deepeval (Apache-2.0)**.
